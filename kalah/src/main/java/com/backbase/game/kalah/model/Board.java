@@ -16,4 +16,33 @@ public class Board {
             this.pits.add(new Pit(i));
         }
     }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    public Pit getPit(final int index) {
+        return this.pits.get((index - 1) % Board.PIT_END_INDEX);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<Pit> getPits() {
+        return this.pits;
+    }
+
+    /**
+     *
+     * @param player
+     * @param includeHouse
+     * @return
+     */
+    public int getStoneCount(final Player player, final boolean includeHouse) {
+        return this.getPits().stream()
+                .filter(pit -> (pit.getOwner().equals(player) && (includeHouse || !pit.isHouse())))
+                .mapToInt(Pit::getStoneCount).sum();
+    }
 }
