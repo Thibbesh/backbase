@@ -40,12 +40,16 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game play(String gameId, Integer pitId) {
         final Game game = this.repository.find(gameId);
-        checkGameOver(game);
         distributeStones(game, pitId);
-        //checkGameOver(game);
+        checkGameOver(game);
         return game;
     }
 
+    /**
+     *
+     * @param game
+     * @param pitId
+     */
     private void distributeStones(final Game game, int pitId) {
         final Pit startPit = game.getBoard().getPit(pitId);
         validateMove(game, pitId);
@@ -62,6 +66,11 @@ public class GameServiceImpl implements GameService {
         decideWhoseTurn(game, pitId);
     }
 
+    /**
+     *
+     * @param game
+     * @param startPitId
+     */
     private void validateMove(final Game game, final int startPitId) {
         final Pit startPit = game.getBoard().getPit(startPitId);
         if (startPit.isHouse()) {
@@ -87,6 +96,11 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    /**
+     *
+     * @param game
+     * @param pitId
+     */
     private void decideWhoseTurn(final Game game, final int pitId) {
         final Pit pit = game.getBoard().getPit(pitId);
         if (pit.isHouse() && Player.PLAYER_1.equals(pit.getOwner())
@@ -104,6 +118,11 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    /**
+     *
+     * @param game
+     * @param endPitId
+     */
     private void lastEmptyPit(final Game game, final int endPitId) {
         final Pit endPit = game.getBoard().getPit(endPitId);
         if (!endPit.isHouse() && endPit.getOwner().equals(game.getWhoseTurn())
@@ -119,30 +138,42 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    /**
+     *
+     * @param game
+     */
     private void checkGameOver(final Game game) {
         final int player1PitStoneCount = game.getBoard().getStoneCount(Player.PLAYER_1, false);
         final int player2PitStoneCount = game.getBoard().getStoneCount(Player.PLAYER_2, false);
-        if ((player1PitStoneCount == 0) || (player2PitStoneCount == 0)) {
+         if ((player1PitStoneCount == 0) || (player2PitStoneCount == 0)) {
             final Pit housePlayer1 = game.getBoard().getPit(Player.PLAYER_1.getHouseIndex());
             final Pit housePlayer2 = game.getBoard().getPit(Player.PLAYER_2.getHouseIndex());
             housePlayer1.setStoneCount(housePlayer1.getStoneCount() + player1PitStoneCount);
             housePlayer2.setStoneCount(housePlayer2.getStoneCount() + player2PitStoneCount);
-            determineWinner(game);
-            resetBoard(game);
+            determineWinnerOfTheGame(game);
+            resetkalahBoard(game);
         }
-    }
+     }
 
-    private void determineWinner(final Game game) {
-        final int houseNorthStoneCount = game.getBoard().getStoneCount(Player.PLAYER_1, true);
-        final int houseSouthStoneCount = game.getBoard().getStoneCount(Player.PLAYER_2, true);
-        if (houseNorthStoneCount > houseSouthStoneCount) {
+    /**
+     *
+     * @param game
+     */
+    private void determineWinnerOfTheGame(final Game game) {
+        final int housePlayer1StoneCount = game.getBoard().getStoneCount(Player.PLAYER_1, true);
+        final int housePlayer2StoneCount = game.getBoard().getStoneCount(Player.PLAYER_2, true);
+        if (housePlayer1StoneCount > housePlayer2StoneCount) {
             game.setWinnerOfTheGame(Player.PLAYER_1);
-        } else if (houseNorthStoneCount < houseSouthStoneCount) {
+        } else if (housePlayer1StoneCount < housePlayer2StoneCount) {
             game.setWinnerOfTheGame(Player.PLAYER_2);
         }
     }
 
-    private void resetBoard(final Game game) {
+    /**
+     *
+     * @param game
+     */
+    private void resetkalahBoard(final Game game) {
         game.getBoard().getPits().parallelStream()
                 .filter(pit -> (Player.PLAYER_1.getHouseIndex() != pit.getId())
                         && (Player.PLAYER_2.getHouseIndex() != pit.getId()))
