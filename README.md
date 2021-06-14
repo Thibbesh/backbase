@@ -15,7 +15,10 @@ them and puts them in his/hers Kalah. The winner of the game is the player who h
 This is a Java RESTful Web Service that runs a game of 6-stone Kalah. This web service enables 2 human players to play the game, each in his own computer.
 
 ### Built With
-Spring Boot - The framework used
-Maven - Dependency management
-JUnit - Test framework
-Swagger - Used to generate API docs & UI
+[Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
+
+* [Spring-boot](https://spring.io/projects/spring-boot)
+* [Maven](https://maven.apache.org/)
+* [junit](https://junit.org/junit5/)
+* [springdoc-openapi](https://springdoc.org/)
+*[SpringBootTest](https://spring.io/guides/gs/testing-web/)
