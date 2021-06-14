@@ -24,3 +24,19 @@ This is a Java RESTful Web Service that runs a game of 6-stone Kalah. This web s
 * [springdoc-openapi](https://springdoc.org/)
 *[SpringBootTest](https://spring.io/guides/gs/testing-web/)
 
+
+### Play Game:
+* Checkout code from https://github.com/Thibbesh/backbase.git
+* run mvn clean install
+* Run KalahApplication.java from any IDE, Intellij IDEA
+* Added postman chrome extension https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
+* Access endpoints from postman to create game http://localhost:8080/games
+* Add Basic authentication to Headers.
+* Username : backbase or user
+* Password: backbase or user
+* Access endpoints from postmane to make a move http://localhost:8080/games/7a29690c-b641-43d7-99be-b260187adcff/pits/1
+* Api documentation : http://localhost:8080/v3/api-docs
+* SwaggerUI : http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+
+### Author
+Thibbesha Nanjegowda,
