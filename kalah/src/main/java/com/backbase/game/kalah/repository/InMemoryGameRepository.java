@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- *
+ * Its a in memory Database for Kalah/Game.
+ * ConcurrentHashMap is dataStorage/database for the game,
+ * This collection context is available application level.
  */
 @Service
 public class InMemoryGameRepository implements GameRepository {
@@ -15,9 +17,9 @@ public class InMemoryGameRepository implements GameRepository {
     private final ConcurrentHashMap<String, Game> dataStorage = new ConcurrentHashMap<>();
 
     /**
-     *
-     * @param id
-     * @return
+     * Find game based on id in HashMap collection.
+     * @param id of the game
+     * @return game of given Id
      */
     @Override
     public Game find(String id) {
@@ -29,9 +31,10 @@ public class InMemoryGameRepository implements GameRepository {
     }
 
     /**
+     * Save Game entity to Hash collection.
      *
-     * @param game
-     * @return
+     * @param game object to be saved
+     * @return Game of saved entity
      */
     @Override
     public Game save(Game game) {

@@ -18,7 +18,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- *
+ * GameController is the main api endpoints of the Kalah game.
+ * this API have main 2 endpoints,
+ * <p>CreateGame</p>
+ * <p>MakeAMove</p>
  */
 @RestController
 public class GameController {
@@ -33,8 +36,10 @@ public class GameController {
     }
 
     /**
+     * REST endpoint to create Game,
+     * Its a post method and nothing body.
      *
-     * @return
+     * @return Response as ResponseEntity
      */
     @PostMapping("/games")
     public ResponseEntity<Response> createGame() {
@@ -43,24 +48,30 @@ public class GameController {
     }
 
     /**
+     * REST endpoint to play game,
+     * This endpoint is the main to play game,
+     * End user just put message with gameId and pitId irrespective of players.
+     * Business logic will determine whose turn, who is the winner of the game, and so on.
      *
-     * @param gameId
-     * @param pitId
-     * @return
+     * @param gameId id of game
+     * @param pitId id of pit
+     * @return Response as ResponseEntity
      */
     @PutMapping("/games/{gameId}/pits/{pitId}")
-    public ResponseEntity<Response> playGame(@PathVariable final String gameId, @PathVariable final Integer pitId) {
-        final Game game = this.service.play(gameId, pitId);
-        final Map<Integer, String> status = game.getBoard().getPits().stream()
+    public ResponseEntity<Response> makeAMove(@PathVariable final String gameId, @PathVariable final Integer pitId) {
+        final Game game = this.service.move(gameId, pitId);
+        final Map<Integer, String> gameStatus = game.getBoard().getPits().stream()
                 .collect(Collectors.toMap(Pit::getId, value -> Integer.toString(value.getStoneCount())));
-        Response response = new Response(game.getId(), getUrl(game.getId()), status);
+        Response response = new Response(game.getId(), getUrl(game.getId()), gameStatus);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     /**
+     * Based on gameId will populate url.
+     * This URl can send as response.
      *
-     * @param gameId
-     * @return
+     * @param gameId id of the game.
+     * @return url as string
      */
     private String getUrl(final String gameId) {
         final int port = environment.getProperty("server.port", Integer.class, 8080);

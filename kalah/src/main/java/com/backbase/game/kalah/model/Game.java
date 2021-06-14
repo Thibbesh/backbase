@@ -4,6 +4,13 @@ import lombok.Data;
 
 import java.util.UUID;
 
+/**
+ * Game is main entity. does contain
+ * gameId
+ * Board
+ * WinnerOfTheGame
+ * whoseTurn
+ */
 @Data
 public class Game {
 

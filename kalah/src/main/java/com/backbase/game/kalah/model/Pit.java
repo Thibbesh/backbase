@@ -9,12 +9,13 @@ public class Pit {
 
     private final int id;
     private int stoneCount;
+    private static final int STONE_COUNT = 4;
 
     @JsonCreator
     public Pit(@JsonProperty("id") final int id) {
         this.id = id;
         if (!this.isHouse()) {
-            this.setStoneCount(6);
+            this.setStoneCount(STONE_COUNT);
         }
     }
 

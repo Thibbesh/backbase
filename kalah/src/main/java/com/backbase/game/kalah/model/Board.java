@@ -2,7 +2,12 @@ package com.backbase.game.kalah.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
+/**
+ * Each game have a board
+ * Its a board entity
+ */
 public class Board {
 
     public static final int PIT_START_INDEX = 1;
@@ -12,33 +17,32 @@ public class Board {
 
     public Board() {
         this.pits = new ArrayList<>();
-        for (int i = Board.PIT_START_INDEX; i <= Board.PIT_END_INDEX; i++) {
-            this.pits.add(new Pit(i));
-        }
+        IntStream.rangeClosed(Board.PIT_START_INDEX, Board.PIT_END_INDEX)
+                .forEach(pitId -> pits.add(new Pit(pitId)));
     }
 
     /**
-     *
-     * @param index
-     * @return
+     * Get Pit based on Index
+     * @param index of the pit
+     * @return pit
      */
     public Pit getPit(final int index) {
         return this.pits.get((index - 1) % Board.PIT_END_INDEX);
     }
 
     /**
-     *
-     * @return
+     * get All pits of the board
+     * @return pits as a list
      */
     public List<Pit> getPits() {
         return this.pits;
     }
 
     /**
-     *
-     * @param player
-     * @param includeHouse
-     * @return
+     * get StoneCount for a player.
+     * @param player payer of the game.
+     * @param includeHouse kalah or house
+     * @return no of stoneCount
      */
     public int getStoneCount(final Player player, final boolean includeHouse) {
         return this.getPits().stream()
