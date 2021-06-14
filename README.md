@@ -15,12 +15,12 @@ them and puts them in his/hers Kalah. The winner of the game is the player who h
 This is a Java RESTful Web Service that runs a game of 6-stone Kalah. This web service enables 2 human players to play the game, each in his own computer.
 
 ### Prerequisites
-* [Java 1.8](https://www.oracle.com/java/technologies/javase-downloads.html) - Java 1.8
+* [Java 1.8](https://www.oracle.com/java/technologies/javase-downloads.html)
 
 ### Built With
-* [Spring-boot](https://spring.io/projects/spring-boot)- Springboot
-* [Maven](https://maven.apache.org/) - Maven as build tool
-* [junit](https://junit.org/junit5/) - unit test
-* [springdoc-openapi](https://springdoc.org/) - api documentation
-*[SpringBootTest](https://spring.io/guides/gs/testing-web/) - Spring-test
+* [Spring-boot](https://spring.io/projects/spring-boot)
+* [Maven](https://maven.apache.org/)
+* [junit](https://junit.org/junit5/)
+* [springdoc-openapi](https://springdoc.org/)
+*[SpringBootTest](https://spring.io/guides/gs/testing-web/)
 
