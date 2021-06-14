@@ -28,8 +28,8 @@ This is a Java RESTful Web Service that runs a game of 6-stone Kalah. This web s
 ### Play Game:
 * Checkout code from https://github.com/Thibbesh/backbase.git
 * run mvn clean install
-* Run KalahApplication.java from any IDE, Intellij IDEA
-* Added postman chrome extension to chrome browser https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
+* Run ./mvnw spring-boot:run
+* Add postman chrome extension to chrome browser https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en
 * Access endpoints from postman to create a game http://localhost:8080/games
 * Add Basic authentication to Headers.
 * Username : backbase or user
