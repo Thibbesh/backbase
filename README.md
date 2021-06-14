@@ -22,7 +22,7 @@ This is a Java RESTful Web Service that runs a game of 6-stone Kalah. This web s
 * [Maven](https://maven.apache.org/)
 * [junit](https://junit.org/junit5/)
 * [springdoc-openapi](https://springdoc.org/)
-*[SpringBootTest](https://spring.io/guides/gs/testing-web/)
+* [SpringBootTest](https://spring.io/guides/gs/testing-web/)
 
 
 ### Play Game:
